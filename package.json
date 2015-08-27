@@ -1,0 +1,23 @@
+{
+  "name": "screeps-irc-bot",
+  "version": "0.1.0",
+  "description": "#screeps bot",
+  "main": "bin/run.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "irc": "0.3.12",
+    "mocha": "2.2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/screeps-irc/irc-bot.git"
+  },
+  "author": "Anthony Van de Gejuchte",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/screeps-irc/irc-bot/issues"
+  },
+  "homepage": "https://github.com/screeps-irc/irc-bot"
+}
