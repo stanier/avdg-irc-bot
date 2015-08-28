@@ -14,18 +14,22 @@ var bootstrap = function() {
     var restartRequestHandler = function(req, res) {
         var path = url.parse(req.url).pathname;
 
-        res.end();
-
         if (path === "/restart/" + settings.webserver.password) {
+            res.writeHead(200);
+            res.end();
             reboot();
+            return;
         }
+
+        res.writeHead(404);
+        res.end();
     };
 
     client = new irc.ircBot();
     client.connect();
 
     httpServer = http.createServer(restartRequestHandler);
-    httpServer.listen(settings.webserver.port);
+    httpServer.listen(settings.webserver.port || 8080);
 };
 
 var reboot = function() {
