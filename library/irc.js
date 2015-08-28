@@ -24,7 +24,7 @@ ircBot.prototype.connect = function() {
 
 ircBot.prototype.disconnect = function(reason) {
     reason = reason || "Leaving...";
-    this.client.disconnect();
+    this.client.disconnect(reason);
 };
 
 module.exports = {

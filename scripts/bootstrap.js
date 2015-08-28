@@ -29,7 +29,7 @@ var bootstrap = function() {
 };
 
 var reboot = function() {
-    client.disconnect();
+    client.disconnect("Fetching updates from repository");
     console.log("=== Upgrading...");
     var result = child.execSync('git pull ' + (/^win/.test(os.platform) ? '&' : '&&') + ' npm install', {
         encoding: 'utf-8'
