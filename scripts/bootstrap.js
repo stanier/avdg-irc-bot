@@ -5,6 +5,7 @@ var os = require("os");
 var url = require("url");
 
 var irc = require("../library/irc.js");
+var plugins = require("../library/plugins.js");
 var settings = require("../settings.js");
 
 var client;
@@ -25,7 +26,14 @@ var bootstrap = function() {
         res.end();
     };
 
-    client = new irc.ircBot();
+    if (typeof settings !== "object") {
+        settings = {};
+    }
+
+    settings.irc = settings.irc || {};
+    settings.irc.plugins = plugins(settings.irc);
+
+    client = new irc.ircBot(settings.irc);
     client.connect();
 
     httpServer = http.createServer(restartRequestHandler);
@@ -40,8 +48,9 @@ var reboot = function() {
     });
     console.log(result);
     console.log("=== Upgrade ended");
-
-    process.exit(8);
+    process.nextTick(function() {
+        process.exit(8);
+    });
 };
 
 bootstrap();

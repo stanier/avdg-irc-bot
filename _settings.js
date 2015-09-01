@@ -1,15 +1,21 @@
 var githubAuth = null;
-var webhook = {
-    password: null,
-    port: 80
-};
 
 var grunt = {
+};
+
+var irc = {
+    channels: ["#screeps"]
+};
+
+var webserver = {
+    password: null,
+    port: 8080
 };
 
 
 module.exports = {
     githubAuth: githubAuth,
     grunt: grunt,
-    webhook: webhook
+    irc: irc,
+    webserver: webserver
 };
