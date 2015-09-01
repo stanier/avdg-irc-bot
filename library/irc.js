@@ -11,13 +11,17 @@ ircBot.prototype.connect = function() {
         channels: this.settings.channels,
     });
 
-    this.client.addListener('message', function (from, to, message) {
-        console.log(from + ' => ' + to + ': ' + message);
-        self.emitPlugins('message', from, to, message);
+    this.client.addListener('message', function (from, to, text, message) {
+        console.log(from + ' => ' + to + ': ' + text);
+        self.emitPlugins('message', from, to, text, message);
+    });
+
+    this.client.addListener('message#', function(from, to, text, message) {
+        self.emitPlugins('message#', from, to, text, message);
     });
 
     this.client.addListener('pm', function (from, message) {
-        console.log(from + ' => ME: ' + message);
+        self.emitPlugins('pm', from, message);
     });
 
     this.client.addListener('error', function(message) {
