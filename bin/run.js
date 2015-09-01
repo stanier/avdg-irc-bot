@@ -10,11 +10,11 @@ var boot = function() {
     process = child.exec("node scripts/bootstrap.js");
 
     process.stdout.on("data", function(msg) {
-        console.log("> " + msg);
+        console.log("> " + msg.slice(0, msg.length - 1));
     });
 
     process.stderr.on("data", function(msg) {
-        console.log("! " + msg);
+        console.log("! " + msg.slice(0, msg.length - 1));
     });
 
     process.on("exit", function(id) {
