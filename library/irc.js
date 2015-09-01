@@ -48,7 +48,7 @@ ircBot.prototype.emitPlugins = function() {
 
     for (var j in this.settings.plugins) {
         if (typeof this.settings.plugins[j] === "object" && typeof this.settings.plugins[j][type] === "function") {
-            this.settings.plugins[j][type].apply(this.client, args);
+            this.settings.plugins[j][type].apply(this, args);
         }
     }
 };
