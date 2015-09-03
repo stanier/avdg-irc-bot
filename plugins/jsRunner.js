@@ -17,13 +17,15 @@ function executeJavascript(input, options) {
         return vm.runInNewContext(input.slice(startPos), {version: _.clone(process.versions)}, {
             timeout: 17,
             filename: (options.botname || "ai") + ".vm"
-        });
+        }).replace(/\n/g, "");
     } catch (e) {
         var error = e.message;
+        var lines = error.split("\n");
 
         if (startPos === 1 && /\n\s*\^\s*\n/.test(error)) {
-            var lines = error.split("\n");
             error = lines[lines.length - 1] + " (" + lines[0] + ")";
+        } else if (lines.length > 4) {
+            error = lines.splice(0, 4).join("\n") + lines.splice(5).join("");
         }
 
         return error;
